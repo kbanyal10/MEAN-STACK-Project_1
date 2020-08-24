@@ -1,19 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <mat-card>
-  <mat-form-field class="example-full-width">
-    <mat-label>Your Post </mat-label>
-    <input matInput placeholder="Ex. Pizza" value="Sushi">
-  </mat-form-field>
-  <button mat-raised-button color="accent">Save Post</button>
-
-</mat-card>
-
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form (submit)="onSubmit(postForm)" #postForm="ngForm">
+      <mat-card>
+        <mat-form-field class="example-full-width">
+          <mat-label>Your Title</mat-label>
+          <input matInput type="text" ngModel name="title" #title='ngModel' required />
+          <!-- = 'postForm.getControl("title").value' -->
+          <mat-error *ngIf="title.invalid"
+            >Invalid Title</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Your Content</mat-label>
+          <textarea
+            name="content"
+            rows="3"
+            matInput
+            ngModel
+            required
+            #content='ngModel'
+          ></textarea>
+          <mat-error *ngIf="content.invalid"
+            >Invalid Content</mat-error
+          >
+        </mat-form-field>
+        <button mat-raised-button color="accent" type="Submit">
+          Save Post
+        </button>
+      </mat-card>
+    </form>
+  </body>
 </html>

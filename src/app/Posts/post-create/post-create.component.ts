@@ -1,16 +1,24 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { postService } from '../post.service';
 
 @Component({
   selector: 'app-post-create',
   templateUrl: './post-create.component.html',
-  styleUrls: ['./post-create.component.css']
+  styleUrls: ['./post-create.component.css'],
 })
+export class PostCreateComponent {
+  postTitle = '';
+  postContent = '';
 
-export class PostCreateComponent{
+  constructor(public postService: postService) {}
 
-  onClick(){
-    console.log('Hi');
+  onSubmit(postForm: NgForm) {
+    if (postForm.invalid) {
+      return;
+    }
+
+    this.postService.addPost(postForm.value.title, postForm.value.content);
+    postForm.resetForm();
   }
-
-
 }

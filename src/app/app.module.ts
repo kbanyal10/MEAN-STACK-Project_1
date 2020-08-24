@@ -11,6 +11,8 @@ import { HeaderComponent } from './header/header.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { PostListComponent } from './Posts/post-list/post-list.component';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatCardModule,
     MatButtonModule,
     MatToolbarModule,
-    MatExpansionModule
+    MatExpansionModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
