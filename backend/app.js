@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 
 mongoose
   .connect(
-    "mongodb+srv://Kart:nmQeyocxttsEN9qW@cluster0.9axed.mongodb.net/<dbname>?retryWrites=true&w=majority"
+    "mongodb+srv://Kart:nmQeyocxttsEN9qW@cluster0.9axed.mongodb.net/postApp?retryWrites=true&w=majority"
   )
   .then(() => {
     console.log("DataBase Connect!");
@@ -34,6 +34,7 @@ app.post("/api/posts", (req, res, next) => {
     title: req.body.title,
     content: req.body.content,
   });
+  post.save();
 
   console.log(post);
   res.status(201).json({
@@ -42,22 +43,13 @@ app.post("/api/posts", (req, res, next) => {
 });
 
 app.get("/api/posts", (req, res, next) => {
-  const posts = [
-    {
-      id: "adasd2323",
-      title: "Testing",
-      content: "Hello from the server",
-    },
-    {
-      id: "lkmw992",
-      title: "Testing 2",
-      content: "Hello again from the server",
-    },
-  ];
-  res.status(200).json({
-    message: "Hello",
-    posts: posts,
+  Post.find().then((documents) => {
+    res.status(200).json({
+      message: "Hello",
+      posts: documents,
+    });
   });
+
 });
 
 module.exports = app;
