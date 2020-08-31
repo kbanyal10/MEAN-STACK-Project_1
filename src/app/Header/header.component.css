@@ -2,3 +2,23 @@ mat-toolbar {
   flex: 1 1 auto;
   margin-bottom: 2rem;
 }
+
+ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+a{
+  text-decoration: none;
+  color: black;
+}
+
+.spacer{
+  flex: 1 1 auto;
+}
+
+.active-link{
+
+  color: red;
+}
