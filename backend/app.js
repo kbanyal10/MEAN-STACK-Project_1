@@ -6,7 +6,8 @@ const mongoose = require("mongoose");
 
 mongoose
   .connect(
-    "mongodb+srv://Kart:nmQeyocxttsEN9qW@cluster0.9axed.mongodb.net/postApp?retryWrites=true&w=majority"
+    "mongodb+srv://Kart:nmQeyocxttsEN9qW@cluster0.9axed.mongodb.net/postApp?retryWrites=true&w=majority",
+    { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then(() => {
     console.log("DataBase Connect!");
@@ -39,6 +40,18 @@ app.post("/api/posts", (req, res, next) => {
       message: "Message Recieved Successfully!",
       postId: createdPost._id,
     });
+  });
+});
+
+app.put("/api/posts/:id", (req, res, next) => {
+  const post = new Post({
+    _id: req.body.id,
+    title: req.body.title,
+    content: req.body.content,
+  });
+  Post.updateOne({ _id: req.params.id }, post).then((result) => {
+    console.log(result);
+    res.status(200).json({ message: "Updated Successfully!" });
   });
 });
 

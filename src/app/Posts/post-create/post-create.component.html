@@ -6,15 +6,20 @@
     <title>Document</title>
   </head>
   <body>
-    <form (submit)="onSubmit(postForm)" #postForm="ngForm">
+    <form (submit)="onSavePost(postForm)" #postForm="ngForm">
       <mat-card>
         <mat-form-field class="example-full-width">
           <mat-label>Your Title</mat-label>
-          <input matInput type="text" ngModel name="title" #title='ngModel' required />
+          <input
+            matInput
+            type="text"
+            [ngModel]="post.title"
+            name="title"
+            #title="ngModel"
+            required
+          />
           <!-- = 'postForm.getControl("title").value' -->
-          <mat-error *ngIf="title.invalid"
-            >Invalid Title</mat-error
-          >
+          <mat-error *ngIf="title.invalid">Invalid Title</mat-error>
         </mat-form-field>
         <mat-form-field class="example-full-width">
           <mat-label>Your Content</mat-label>
@@ -22,13 +27,11 @@
             name="content"
             rows="3"
             matInput
-            ngModel
+            [ngModel]="post.content"
             required
-            #content='ngModel'
+            #content="ngModel"
           ></textarea>
-          <mat-error *ngIf="content.invalid"
-            >Invalid Content</mat-error
-          >
+          <mat-error *ngIf="content.invalid">Invalid Content</mat-error>
         </mat-form-field>
         <button mat-raised-button color="accent" type="Submit">
           Save Post
