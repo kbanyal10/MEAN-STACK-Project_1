@@ -13,7 +13,7 @@
           <input
             matInput
             type="text"
-            [ngModel]="post.title"
+            [ngModel]="post?.title"
             name="title"
             #title="ngModel"
             required
@@ -27,7 +27,7 @@
             name="content"
             rows="3"
             matInput
-            [ngModel]="post.content"
+            [ngModel]="post?.content"
             required
             #content="ngModel"
           ></textarea>
