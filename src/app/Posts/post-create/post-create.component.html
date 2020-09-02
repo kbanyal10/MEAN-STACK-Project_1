@@ -6,7 +6,8 @@
     <title>Document</title>
   </head>
   <body>
-    <form (submit)="onSavePost(postForm)" #postForm="ngForm">
+    <mat-spinner *ngIf= 'isLoading'></mat-spinner>
+    <form (submit)="onSavePost(postForm)" #postForm="ngForm" *ngIf= '!isLoading'>
       <mat-card>
         <mat-form-field class="example-full-width">
           <mat-label>Your Title</mat-label>
